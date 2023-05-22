@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
+import stationIcon from './images/station-icon.png';
+
 function StationsMap() {
   const [stations, setStations] = useState([]);
   const [mapInitialized, setMapInitialized] = useState(false);
@@ -33,9 +35,14 @@ function StationsMap() {
         maxZoom: 18,
       }).addTo(map);
 
+      const customIcon = L.icon({
+        iconUrl: stationIcon,
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+      });
 
       stations.forEach((station) => {
-        const marker = L.marker([station.y, station.x]).addTo(map);
+        const marker = L.marker([station.y, station.x], { icon: customIcon }).addTo(map);
         marker.bindPopup(`<b>${station.Name}</b><br>${station.Adress}, ${station.Stad}<br>Capacity: ${station.Kapasiteet}`);
       });
 
