@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import stationsMap from './components/stationMap';
-import journeysPage from './components/journeys';
-import stationsPage from './components/stations';
+import StationsMap from './components/stationMap';
+import JourneysPage from './components/journeys';
+import StationsPage from './components/stations';
 import './App.css'; 
 
 function App() {
@@ -25,8 +25,8 @@ function App() {
       </div>
       <Switch>
         <Route exact path="/index" component={StationsMap} />
-        <Route exact path="/stations" component={stationsPage} />
-        <Route exact path="/journeys" component={journeysPage} />
+        <Route exact path="/stations" component={StationsPage} />
+        <Route exact path="/journeys" component={JourneysPage} />
         <Redirect from="/" to="/index" />
       </Switch>
     </Router>

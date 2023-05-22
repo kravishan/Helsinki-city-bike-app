@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import stationIcon from './images/station-icon.png';
+import stationIcon from '../images/station-icon.png';
 
-function StationsMap() {
+function Station() {
   const [stations, setStations] = useState([]);
   const [mapInitialized, setMapInitialized] = useState(false);
 
@@ -53,4 +53,4 @@ function StationsMap() {
   return <div id="map" style={{ width: '100%', height: '100vh' }}></div>;
 }
 
-export default StationsMap;
+export default Station;
