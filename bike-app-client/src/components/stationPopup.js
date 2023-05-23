@@ -11,7 +11,7 @@ const StationPopup = ({ station, onClose}) => {
   }
 
   const { Name, Adress, Stad, Kapasiteet, x, y } = station;
- 
+
   const customIcon = L.icon({
     iconUrl: stationIcon,
     iconSize: [32, 32],
@@ -31,7 +31,7 @@ const StationPopup = ({ station, onClose}) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot; target=&quot;_blank&quot;>OpenStreetMap</a> contributors"
           />
-          <Marker position={[y, x]} icon={customIcon} />
+          <Marker position={[y, x]}/>
         </MapContainer>
       </div>
 

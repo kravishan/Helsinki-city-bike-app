@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/listView.css';
 import Pagination from './pagination';
 import SortButton from './sorting';
+import StationPopup from './stationPopup'; 
 
 function StationsPage() {
   const [stations, setStations] = useState([]);
@@ -12,6 +13,9 @@ function StationsPage() {
   const [sortDirection, setSortDirection] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearching, setIsSearching] = useState(false);
+  const [selectedStation, setSelectedStation] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
 
 
   useEffect(() => {
@@ -90,6 +94,11 @@ function StationsPage() {
       return a[sortedBy] < b[sortedBy] ? 1 : -1;
     }
   });
+
+  const handleStationClick = (station) => {
+    setSelectedStation(station);
+    setIsPopupOpen(true);
+  };
   
   return (
     <div>
@@ -131,7 +140,7 @@ function StationsPage() {
           </thead>
           <tbody>
             {sortedStations.map((station) => (
-              <tr key={station.ID}>
+              <tr key={station.ID} onClick={() => handleStationClick(station)}>
                 <td>{station.Name}</td>
                 <td>{station.Stad}</td>
                 <td>{station.Kapasiteet}</td>
@@ -149,6 +158,13 @@ function StationsPage() {
           goToNextPage={goToNextPage}
           goToLastPage={goToLastPage}
         />
+      )}
+
+      {isPopupOpen && selectedStation && (
+        <StationPopup 
+            station={selectedStation} 
+            journeys={journeys}
+            onClose={() => setIsPopupOpen(false)} />
       )}
     </div>
   );
