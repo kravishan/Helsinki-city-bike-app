@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/addStationPopup.css';
 
 function StationPopup({ onAddStation, onClose }) {
   const [name, setName] = useState('');
