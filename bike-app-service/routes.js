@@ -46,4 +46,20 @@ router.get('/journeys', (req, res) => {
   });
 });
 
+// Add new station
+router.post('/stations', async (req, res) => {
+  try {
+    const { name, address, city, capacity, operator, x, y } = req.body;
+
+    const query = 'INSERT INTO journeys_db.stations (Name, Adress, Stad, Kapasiteet, Operaattor, x, y) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    await db.query(query, [name, address, city, capacity, operator, x, y]);
+
+    res.status(201).json({ message: 'Station created successfully' });
+  } catch (err) {
+    console.error('Error creating station:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 module.exports = router;
