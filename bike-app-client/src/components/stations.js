@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 function StationsPage() {
     const [stations, setStations] = useState([]);
     const [journeys, setJourneys] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isSearching, setIsSearching] = useState(false);
 
     useEffect(() => {
         fetchStations();
@@ -30,11 +32,20 @@ function StationsPage() {
       };  
 
     
+      const handleSearch = (event) => {
+        const searchTerm = event.target.value;
+        setSearchTerm(searchTerm);
+        setIsSearching(searchTerm !== '');
+      };  
     
       
       
       return (
-        <div>   
+        <div>  
+            <h1>Stations List</h1>
+      <div className="search-bar">
+        <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
+      </div> 
     </div>
   );
 }
