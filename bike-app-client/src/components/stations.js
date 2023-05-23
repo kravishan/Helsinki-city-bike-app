@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/listView.css';
 import Pagination from './pagination';
 import SortButton from './sorting';
-import StationPopup from './stationPopup'; 
+import AddStationPopup from './addStationPopup'; 
 
 function StationsPage() {
     const [stations, setStations] = useState([]);
@@ -15,6 +15,7 @@ function StationsPage() {
     const [isSearching, setIsSearching] = useState(false);
     const [selectedStation, setSelectedStation] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isAddStationPopupOpen, setIsAddStationPopupOpen] = useState(false);
   
     useEffect(() => {
       fetchStations();
@@ -86,8 +87,10 @@ function StationsPage() {
   
     const handleSort = (column) => {
       if (sortedBy === column) {
+        // If already sorted by the same column, toggle the sort direction
         setSortDirection((prevDirection) => (prevDirection === 'asc' ? 'desc' : 'asc'));
       } else {
+        // Sort by a new column
         setSortedBy(column);
         setSortDirection('asc');
       }
@@ -105,13 +108,19 @@ function StationsPage() {
       setSelectedStation(station);
       setIsPopupOpen(true);
     };
- 
+  
+    const toggleAddStationPopup = () => {
+      setIsAddStationPopupOpen(!isAddStationPopupOpen);
+    };
+    
+  
     return (
       <div>
         <h1>Stations List</h1>
         <div className="search-bar">
           <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
         </div>
+        <button className="add-station-button" onClick={toggleAddStationPopup}>Add Station</button>
         {stations.length === 0 ? (
           <p>Loading stations...</p>
         ) : (
@@ -165,7 +174,16 @@ function StationsPage() {
             goToLastPage={goToLastPage}
           />
         )}
- 
+        {isAddStationPopupOpen && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              <AddStationPopup 
+                  onAddStation={StationPopup} 
+                  onClose={toggleAddStationPopup}/>
+            </div>
+          </div>
+        )}
+  
         {isPopupOpen && selectedStation && (
           <StationPopup 
               station={selectedStation} 
