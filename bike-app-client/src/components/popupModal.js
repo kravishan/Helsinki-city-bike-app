@@ -1,5 +1,6 @@
 import React from 'react';
-import './popupModal.css';
+import '../styles/popupModal.css';
+
 
 const Modal = ({ children }) => {
   return (
