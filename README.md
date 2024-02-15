@@ -14,7 +14,7 @@ This project aims to create a user interface and a backend service for displayin
   - [July 2021](https://dev.hsl.fi/citybikes/od-trips-2021/2021-07.csv)
 - Station Information: [Helsinki Region Transport's (HSL) City Bicycle Stations](https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv)
 
-### Functional Requirements
+### Functions implemented
 
 #### Data Import
 
@@ -40,7 +40,7 @@ This project aims to create a user interface and a backend service for displayin
 - Provide the top 5 most popular return and departure stations for journeys related to the selected station.
 - Implement filtering for calculations per month.
 
-#### Surprise Us With
+#### Additional Features
 
 - Endpoints to store new journey data or new bicycle stations.
 - Running backend in Docker or Cloud.
