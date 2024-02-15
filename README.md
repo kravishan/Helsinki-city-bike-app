@@ -43,7 +43,7 @@ This project aims to create a user interface and a backend service for displayin
 #### Additional Features
 
 - Endpoints to store new journey data or new bicycle stations.
-- Running backend in Docker or Cloud.
+- Running backend in Cloud.
 - Implementing E2E tests.
 - Create UI for adding journeys or bicycle stations.
 
